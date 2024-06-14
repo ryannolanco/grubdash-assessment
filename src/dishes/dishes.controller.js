@@ -28,7 +28,8 @@ function bodyDataHas(propertyName) {
 }
 
 function namePropertyIsValid(req, res, next) {
-  const { data: { name } = {} } = req.body;
+  const name = res.locals.name
+  
   if (!name || isEmptyString(name)) {
     return next({ status: 400, message: 'Name property must not be an empty string' });
   }
@@ -36,7 +37,8 @@ function namePropertyIsValid(req, res, next) {
 }
 
 function descriptionPropertyIsValid(req, res, next) {
-  const { data: { description } = {} } = req.body;
+  const description = res.locals.description;
+ 
   if (!description || isEmptyString(description)) {
     return next({ status: 400, message: 'Description property must not be an empty string' });
   }
@@ -44,7 +46,8 @@ function descriptionPropertyIsValid(req, res, next) {
 }
 
 function imageUrlPropertyIsValid(req, res, next) {
-  const { data: { image_url } = {} } = req.body;
+  const image_url = res.locals.image_url
+
   if (!image_url || isEmptyString(image_url)) {
     return next({ status: 400, message: 'Image URL property must not be an empty string' });
   }
@@ -52,7 +55,7 @@ function imageUrlPropertyIsValid(req, res, next) {
 }
 
 function pricePropertyIsValid(req, res, next) {
-  const { data: { price } = {} } = req.body;
+  const price= res.locals.price;
 
   if (typeof price !== 'number' || !Number.isInteger(price)) {
     return next({ status: 400, message: `price must be a valid integer` });
